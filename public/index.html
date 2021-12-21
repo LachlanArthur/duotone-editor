@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="/index.css" />
+  <title>Duotone Editor</title>
+</head>
+
+<body>
+
+  <h1>Duotone Editor</h1>
+
+  <div x-data="editor">
+
+    <p>
+      <label for="filepicker" hidden>Open image</label>
+      <input id="filepicker" type="file" accept="image/*" @change="onChangeFile">
+    </p>
+
+    <p>
+      <label for="color1">Dark colour</label>
+      <input id="color1" type="color" x-model="color1">
+    </p>
+    <p>
+      <label for="color2">Light colour</label>
+      <input id="color2" type="color" x-model="color2">
+    </p>
+
+    <div id="drop-target" hidden>Drop file</div>
+
+    <img id="preview" :src="fileUrl" style="filter: url(#duotone);">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" focusable="false"
+      role="none" style="visibility: hidden; position: absolute; left: -9999px;">
+      <defs>
+        <filter id="duotone">
+          <feColorMatrix type="matrix" values="
+              .299 .587 .114 0 0
+              .299 .587 .114 0 0
+              .299 .587 .114 0 0
+              0 0 0 1 0
+            "></feColorMatrix>
+          <feComponentTransfer color-interpolation-filters="sRGB">
+            <feFuncR type="table" :table-values.camel="tableValuesR"></feFuncR>
+            <feFuncG type="table" :table-values.camel="tableValuesG"></feFuncG>
+            <feFuncB type="table" :table-values.camel="tableValuesB"></feFuncB>
+          </feComponentTransfer>
+        </filter>
+      </defs>
+    </svg>
+
+    <h2>SVG Filter</h2>
+
+    <pre>&lt;img src=&quot;./image.jpg&quot; style=&quot;filter: url(#duotone);&quot;&gt;
+
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 0 0&quot; focusable=&quot;false&quot;
+  role=&quot;none&quot; style=&quot;visibility: hidden; position: absolute; left: -9999px;&quot;&gt;
+  &lt;defs&gt;
+    &lt;filter id=&quot;duotone&quot;&gt;
+      &lt;feColorMatrix type=&quot;matrix&quot; values=&quot;
+          .299 .587 .114 0 0
+          .299 .587 .114 0 0
+          .299 .587 .114 0 0
+          0 0 0 1 0
+        &quot;&gt;&lt;/feColorMatrix&gt;
+      &lt;feComponentTransfer color-interpolation-filters=&quot;sRGB&quot;&gt;
+        &lt;feFuncR type=&quot;table&quot; tableValues=&quot;<span x-text="tableValuesR"></span>&quot;&gt;&lt;/feFuncR&gt;
+        &lt;feFuncG type=&quot;table&quot; tableValues=&quot;<span x-text="tableValuesG"></span>&quot;&gt;&lt;/feFuncG&gt;
+        &lt;feFuncB type=&quot;table&quot; tableValues=&quot;<span x-text="tableValuesB"></span>&quot;&gt;&lt;/feFuncB&gt;
+      &lt;/feComponentTransfer&gt;
+    &lt;/filter&gt;
+  &lt;/defs&gt;
+&lt;/svg&gt;</pre>
+
+  </div>
+
+  <script type="module" src="/dist/index.js"></script>
+</body>
+
+</html>

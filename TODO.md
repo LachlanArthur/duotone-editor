@@ -1,0 +1,10 @@
+- [x] MVP
+- [ ] Readme
+- [ ] Download button (render img to canvas with ctx.filter property)
+- [ ] File drop zone
+- [ ] Palette presets
+- [ ] Copy code button
+- [ ] Better colour picker
+- [ ] Alpha support
+- [ ] Desaturation weight options (film, sRGB, perceptual, none, etc)
+- [ ] Generate SVG code block from actual SVG
