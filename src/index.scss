@@ -10,6 +10,36 @@ body {
 
 }
 
+#gradients {
+  display: grid;
+  grid-template-columns: min-content auto min-content;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    '. input .'
+    'dark output light';
+  gap: 0 0.5em;
+}
+
+#input-gradient {
+  grid-area: input;
+  background: linear-gradient( to right, black, white );
+}
+
+#output-gradient {
+  grid-area: output;
+  background: linear-gradient( to right, var( --color1 ), var( --color2 ) );
+}
+
+#color1 {
+  grid-area: dark;
+  justify-self: start;
+}
+
+#color2 {
+  grid-area: light;
+  justify-self: end;
+}
+
 #preview {
   display: block;
   max-width: 100%;

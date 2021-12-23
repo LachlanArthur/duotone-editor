@@ -21,14 +21,12 @@
       <input id="filepicker" type="file" accept="image/*" x-bind="filePicker">
     </p>
 
-    <p>
-      <label for="color1">Dark colour</label>
+    <div id="gradients" :style="{ '--color1': color1, '--color2': color2 }">
+      <div id="input-gradient"></div>
+      <div id="output-gradient"></div>
       <input id="color1" type="color" x-model="color1">
-    </p>
-    <p>
-      <label for="color2">Light colour</label>
       <input id="color2" type="color" x-model="color2">
-    </p>
+    </div>
 
     <div id="drop-target" hidden>Drop file</div>
 
