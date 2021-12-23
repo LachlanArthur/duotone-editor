@@ -1,5 +1,10 @@
 import { hex2rgba } from "./colors";
 
+interface AlpineData {
+  [ property: string ]: any,
+  $watch( property: string, callback: ( ...args: any[] ) => void ): void;
+}
+
 export default () => ( {
 
   color1: '#480091',
@@ -9,7 +14,7 @@ export default () => ( {
   tableValuesG: '',
   tableValuesB: '',
 
-  init() {
+  init( this: AlpineData ) {
     this.$watch( 'color1', this.updateTableValues.bind( this ) );
     this.$watch( 'color2', this.updateTableValues.bind( this ) );
     this.updateTableValues();
@@ -45,7 +50,7 @@ export default () => ( {
     file: undefined as File | undefined,
     url: './sample.jpg',
 
-    [ '@change' ]( event: Event ) {
+    [ '@change' ]( this: AlpineData, event: Event ) {
       if ( event.target && event.target instanceof HTMLInputElement && event.target.files ) {
         this.filePicker.file = event.target.files[ 0 ];
       }
@@ -61,20 +66,20 @@ export default () => ( {
 
     showMessage: false,
 
-    [ '@clipboard-copy' ]() {
+    [ '@clipboard-copy' ]( this: AlpineData ) {
       this.copyButton.showMessage = true;
       setTimeout( () => {
         this.copyButton.showMessage = false;
       }, 1000 );
     },
 
-    [ ':class' ]() {
+    [ ':class' ]( this: AlpineData ) {
       return {
         'success': this.copyButton.showMessage,
       };
     },
 
-    [ 'x-text' ]() {
+    [ 'x-text' ]( this: AlpineData ) {
       return this.copyButton.showMessage ? 'Copied ✅' : 'Copy';
     },
 
