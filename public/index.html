@@ -18,7 +18,7 @@
 
     <p>
       <label for="filepicker" hidden>Open image</label>
-      <input id="filepicker" type="file" accept="image/*" @change="onChangeFile">
+      <input id="filepicker" type="file" accept="image/*" x-bind="filePicker">
     </p>
 
     <p>
@@ -32,7 +32,7 @@
 
     <div id="drop-target" hidden>Drop file</div>
 
-    <img id="preview" :src="fileUrl" style="filter: url(#duotone);">
+    <img id="preview" :src="filePicker.url" style="filter: url(#duotone);">
 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" focusable="false"
       role="none" style="visibility: hidden; position: absolute; left: -9999px;">

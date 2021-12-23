@@ -2,9 +2,6 @@ import { hex2rgba } from "./colors";
 
 export default () => ( {
 
-  file: undefined as File | undefined,
-  fileUrl: './sample.jpg',
-
   color1: '#480091',
   color2: '#ffecc4',
 
@@ -16,16 +13,6 @@ export default () => ( {
     this.$watch( 'color1', this.updateTableValues.bind( this ) );
     this.$watch( 'color2', this.updateTableValues.bind( this ) );
     this.updateTableValues();
-  },
-
-  onChangeFile( event: Event ) {
-    if ( event.target && event.target instanceof HTMLInputElement && event.target.files ) {
-      this.file = event.target.files[ 0 ];
-    }
-
-    if ( this.file ) {
-      this.fileUrl = URL.createObjectURL( this.file );
-    }
   },
 
   updateTableValues() {
@@ -50,6 +37,23 @@ export default () => ( {
     this.tableValuesR = tableValuesR.join( ' ' );
     this.tableValuesG = tableValuesG.join( ' ' );
     this.tableValuesB = tableValuesB.join( ' ' );
+
+  },
+
+  filePicker: {
+
+    file: undefined as File | undefined,
+    url: './sample.jpg',
+
+    [ '@change' ]( event: Event ) {
+      if ( event.target && event.target instanceof HTMLInputElement && event.target.files ) {
+        this.filePicker.file = event.target.files[ 0 ];
+      }
+
+      if ( this.filePicker.file ) {
+        this.filePicker.url = URL.createObjectURL( this.filePicker.file );
+      }
+    },
 
   },
 
