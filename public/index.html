@@ -54,8 +54,9 @@
     </svg>
 
     <h2>SVG Filter</h2>
+    <clipboard-copy for="code" x-bind="copyButton"></clipboard-copy>
 
-    <pre>&lt;img src=&quot;./image.jpg&quot; style=&quot;filter: url(#duotone);&quot;&gt;
+    <pre id="code">&lt;img src=&quot;./image.jpg&quot; style=&quot;filter: url(#duotone);&quot;&gt;
 
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 0 0&quot; focusable=&quot;false&quot;
   role=&quot;none&quot; style=&quot;visibility: hidden; position: absolute; left: -9999px;&quot;&gt;

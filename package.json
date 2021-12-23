@@ -4,6 +4,7 @@
     "build": "snowpack build"
   },
   "dependencies": {
+    "@github/clipboard-copy-element": "^1.1.2",
     "alpinejs": "^3.7.1"
   },
   "devDependencies": {

@@ -53,4 +53,27 @@ export default () => ( {
 
   },
 
+  copyButton: {
+
+    showMessage: false,
+
+    [ '@clipboard-copy' ]() {
+      this.copyButton.showMessage = true;
+      setTimeout( () => {
+        this.copyButton.showMessage = false;
+      }, 1000 );
+    },
+
+    [ ':class' ]() {
+      return {
+        'success': this.copyButton.showMessage,
+      };
+    },
+
+    [ 'x-text' ]() {
+      return this.copyButton.showMessage ? 'Copied ✅' : 'Copy';
+    },
+
+  },
+
 } );
