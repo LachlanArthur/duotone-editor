@@ -1,7 +1,7 @@
 import { AlpineApp } from "./alpineApp";
 import { hex2rgba } from "./colors";
 
-export default class Editor extends AlpineApp {
+export default class Editor extends AlpineApp<Editor> {
 
   color1 = '#480091';
   color2 = '#ffecc4';
