@@ -1,24 +1,20 @@
+import { AlpineApp } from "./alpineApp";
 import { hex2rgba } from "./colors";
 
-interface AlpineData {
-  [ property: string ]: any,
-  $watch( property: string, callback: ( ...args: any[] ) => void ): void;
-}
+export default class Editor extends AlpineApp {
 
-export default () => ( {
+  color1 = '#480091';
+  color2 = '#ffecc4';
 
-  color1: '#480091',
-  color2: '#ffecc4',
+  tableValuesR = '';
+  tableValuesG = '';
+  tableValuesB = '';
 
-  tableValuesR: '',
-  tableValuesG: '',
-  tableValuesB: '',
-
-  init( this: AlpineData ) {
+  init() {
     this.$watch( 'color1', this.updateTableValues.bind( this ) );
     this.$watch( 'color2', this.updateTableValues.bind( this ) );
     this.updateTableValues();
-  },
+  }
 
   updateTableValues() {
 
@@ -43,14 +39,14 @@ export default () => ( {
     this.tableValuesG = tableValuesG.join( ' ' );
     this.tableValuesB = tableValuesB.join( ' ' );
 
-  },
+  }
 
-  filePicker: {
+  filePicker = {
 
     file: undefined as File | undefined,
     url: './sample.jpg',
 
-    [ '@change' ]( this: AlpineData, event: Event ) {
+    [ '@change' ]( this: Editor, event: Event ) {
       if ( event.target && event.target instanceof HTMLInputElement && event.target.files ) {
         this.filePicker.file = event.target.files[ 0 ];
       }
@@ -60,29 +56,29 @@ export default () => ( {
       }
     },
 
-  },
+  }
 
-  copyButton: {
+  copyButton = {
 
     showMessage: false,
 
-    [ '@clipboard-copy' ]( this: AlpineData ) {
+    [ '@clipboard-copy' ]( this: Editor ) {
       this.copyButton.showMessage = true;
       setTimeout( () => {
         this.copyButton.showMessage = false;
       }, 1000 );
     },
 
-    [ ':class' ]( this: AlpineData ) {
+    [ ':class' ]( this: Editor ) {
       return {
         'success': this.copyButton.showMessage,
       };
     },
 
-    [ 'x-text' ]( this: AlpineData ) {
+    [ 'x-text' ]( this: Editor ) {
       return this.copyButton.showMessage ? 'Copied ✅' : 'Copy';
     },
 
-  },
+  }
 
-} );
+}
