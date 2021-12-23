@@ -12,25 +12,25 @@
 
 <body>
 
-  <h1>Duotone Editor</h1>
+  <div x-data="editor" class="container-fluid">
 
-  <div x-data="editor">
+    <h1 class="display-1">Duotone Editor</h1>
 
     <p>
       <label for="filepicker" hidden>Open image</label>
-      <input id="filepicker" type="file" accept="image/*" x-bind="filePicker">
+      <input id="filepicker" type="file" accept="image/*" x-bind="filePicker" class="form-control">
     </p>
 
     <div id="gradients" :style="{ '--color1': color1, '--color2': color2 }">
       <div id="input-gradient"></div>
       <div id="output-gradient"></div>
-      <input id="color1" type="color" x-model="color1">
-      <input id="color2" type="color" x-model="color2">
+      <input id="color1" type="color" x-model="color1" class="form-control form-control-color">
+      <input id="color2" type="color" x-model="color2" class="form-control form-control-color">
     </div>
 
     <div id="drop-target" hidden>Drop file</div>
 
-    <img id="preview" :src="filePicker.url" style="filter: url(#duotone);">
+    <img id="preview" :src="filePicker.url" style="filter: url(#duotone);" class="my-3">
 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" focusable="false"
       role="none" style="visibility: hidden; position: absolute; left: -9999px;">

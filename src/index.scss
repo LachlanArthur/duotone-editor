@@ -1,23 +1,21 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: system-ui;
-}
-
-#filepicker {
-
-}
+@import './bootstrap';
 
 #gradients {
   display: grid;
-  grid-template-columns: min-content auto min-content;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
-    '. input .'
-    'dark output light';
-  gap: 0 0.5em;
+    'input input'
+    'output output'
+    'dark light';
+
+  @include media-breakpoint-up( md ) {
+    grid-template-columns: min-content auto min-content;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      '. input .'
+      'dark output light';
+    gap: 0 calc( $spacer / 2 );
+  }
 }
 
 #input-gradient {
