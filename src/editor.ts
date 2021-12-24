@@ -58,4 +58,34 @@ export default class Editor extends AlpineApp<Editor> {
 
   }
 
+  async saveImage() {
+
+    const canvas = document.createElement( 'canvas' );
+    const ctx = canvas.getContext( '2d' )!;
+
+    const image = new Image();
+    image.src = this.filePicker.url;
+
+    await new Promise( resolve => image.addEventListener( 'load', resolve ) );
+
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+    ctx.filter = 'url(#duotone)';
+
+    ctx.drawImage( image, 0, 0 );
+
+    const blob = await new Promise<Blob | null>( resolve => canvas.toBlob( blob => resolve( blob ) ) );
+
+    if ( !blob ) {
+      alert( 'Failed to export image' );
+      return;
+    }
+
+    const url = URL.createObjectURL( blob );
+
+    window.open( url, '_blank' );
+
+  }
+
 }

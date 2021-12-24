@@ -51,6 +51,10 @@
       </defs>
     </svg>
 
+    <p>
+      <button type="button" class="btn btn-secondary" @click="saveImage">Export PNG</button>
+    </p>
+
     <h2>SVG Filter</h2>
     <clipboard-copy for="code" class="btn btn-secondary" x-data="copyButton"
       x-text="showMessage ? 'Copied ✅' : 'Copy SVG filter'"
