@@ -52,7 +52,7 @@
     </svg>
 
     <h2>SVG Filter</h2>
-    <clipboard-copy for="code" x-bind="copyButton" class="btn btn-secondary"></clipboard-copy>
+    <clipboard-copy for="code" class="btn btn-secondary" x-data="copyButton" x-bind="bindings"></clipboard-copy>
 
     <pre id="code">&lt;img src=&quot;./image.jpg&quot; style=&quot;filter: url(#duotone);&quot;&gt;
 

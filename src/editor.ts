@@ -58,27 +58,4 @@ export default class Editor extends AlpineApp<Editor> {
 
   }
 
-  copyButton = {
-
-    showMessage: false,
-
-    [ '@clipboard-copy' ]( this: Editor ) {
-      this.copyButton.showMessage = true;
-      setTimeout( () => {
-        this.copyButton.showMessage = false;
-      }, 1000 );
-    },
-
-    [ ':class' ]( this: Editor ) {
-      return {
-        'success': this.copyButton.showMessage,
-      };
-    },
-
-    [ 'x-text' ]( this: Editor ) {
-      return this.copyButton.showMessage ? 'Copied ✅' : 'Copy';
-    },
-
-  }
-
 }
