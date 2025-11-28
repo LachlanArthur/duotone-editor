@@ -1,3 +1,4 @@
+import './index.css';
 import '@github/clipboard-copy-element';
 
 import Alpine from 'alpinejs';
